@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "新闻茶座引语边界台领域事件",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "aggregate_type",
+    "aggregate_id",
+    "occurred_at",
+    "version",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "QUESTION_ACCEPTED",
+        "QUOTE_CAPTURED",
+        "TRANSLATION_APPROVED",
+        "QUOTE_RELEASED",
+        "CORRECTION_SENT"
+      ]
+    },
+    "aggregate_type": {
+      "type": "string",
+      "enum": [
+        "press_session",
+        "question_turn",
+        "quote_fragment",
+        "correction_notice"
+      ]
+    },
+    "aggregate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "payload_required_by_event": {
+    "QUOTE_CAPTURED": [
+      "speaker_id",
+      "source_language"
+    ],
+    "QUOTE_RELEASED": [
+      "quote_level",
+      "release_version"
+    ],
+    "CORRECTION_SENT": [
+      "supersedes",
+      "recipient_scope"
+    ]
+  },
+  "additionalProperties": false
+}

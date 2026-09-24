@@ -1,0 +1,9 @@
+{
+  "event_id": "092507-010-sample-001",
+  "event_type": "QUESTION_ACCEPTED",
+  "aggregate_type": "press_session",
+  "aggregate_id": "press_quote_boundary-001",
+  "occurred_at": "2026-09-24T12:00:00+08:00",
+  "version": 1,
+  "payload": {}
+}
