@@ -5,3 +5,6 @@ __pycache__/
 .venv/
 node_modules/
 coverage/
+
+# 运行期事件日志
+data/eventlog.jsonl

@@ -1,9 +1,14 @@
 {
   "event_id": "092507-010-sample-001",
   "event_type": "QUESTION_ACCEPTED",
-  "aggregate_type": "press_session",
-  "aggregate_id": "press_quote_boundary-001",
+  "aggregate_type": "question_turn",
+  "aggregate_id": "q-20260925-010",
   "occurred_at": "2026-09-24T12:00:00+08:00",
   "version": 1,
-  "payload": {}
+  "payload": {
+    "session_id": "press_quote_boundary-001",
+    "reporter_id": "reporter-chen-001",
+    "text": "请问双方在人文交流领域有哪些新的安排？",
+    "language": "zh"
+  }
 }

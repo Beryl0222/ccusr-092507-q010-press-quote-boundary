@@ -19,17 +19,32 @@
     "event_type": {
       "type": "string",
       "enum": [
+        "SESSION_REGISTERED",
+        "REPORTER_VERIFIED",
+        "GRANT_ISSUED",
+        "GRANT_REVOKED",
         "QUESTION_ACCEPTED",
         "QUOTE_CAPTURED",
+        "QUOTE_QUARANTINED",
+        "TRANSLATION_SUBMITTED",
         "TRANSLATION_APPROVED",
+        "FACT_ATTACHED",
+        "QUOTE_PUBLISHED",
         "QUOTE_RELEASED",
-        "CORRECTION_SENT"
+        "QUOTE_HELD_FOR_CONFIRMATION",
+        "PENDING_ESCALATED",
+        "CONFIRMATION_RESOLVED",
+        "SCOPE_CHANGED",
+        "CORRECTION_SENT",
+        "CORRECTION_DELIVERY_ACKED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
         "press_session",
+        "reporter",
+        "grant",
         "question_turn",
         "quote_fragment",
         "correction_notice"
@@ -52,17 +67,130 @@
     }
   },
   "payload_required_by_event": {
+    "SESSION_REGISTERED": [
+      "session_id",
+      "timezone"
+    ],
+    "REPORTER_VERIFIED": [
+      "reporter_id",
+      "outlet",
+      "languages"
+    ],
+    "GRANT_ISSUED": [
+      "grant_id",
+      "reporter_id",
+      "session_id",
+      "scopes",
+      "api_token",
+      "issued_at"
+    ],
+    "GRANT_REVOKED": [
+      "grant_id",
+      "revoked_at"
+    ],
+    "QUESTION_ACCEPTED": [
+      "session_id",
+      "reporter_id",
+      "text",
+      "language"
+    ],
     "QUOTE_CAPTURED": [
+      "session_id",
+      "question_id",
+      "external_id",
+      "receipt_id",
+      "content_hash",
+      "source_kind",
       "speaker_id",
-      "source_language"
+      "source_language",
+      "text"
+    ],
+    "QUOTE_QUARANTINED": [
+      "external_id",
+      "reason",
+      "content_hash"
+    ],
+    "TRANSLATION_SUBMITTED": [
+      "translation_id",
+      "translator_id",
+      "language",
+      "text",
+      "submitted_at"
+    ],
+    "TRANSLATION_APPROVED": [
+      "translation_id",
+      "approver_id"
+    ],
+    "FACT_ATTACHED": [
+      "attachment_id",
+      "title",
+      "reference",
+      "attached_at"
+    ],
+    "QUOTE_PUBLISHED": [
+      "session_id",
+      "quote_level",
+      "release_version",
+      "source_text_ref",
+      "approved_translation_ids",
+      "embargo_until",
+      "attribution",
+      "eligible_grant_scopes",
+      "published_at"
     ],
     "QUOTE_RELEASED": [
       "quote_level",
       "release_version"
     ],
+    "QUOTE_HELD_FOR_CONFIRMATION": [
+      "held_at"
+    ],
+    "PENDING_ESCALATED": [
+      "escalated_at",
+      "escalated_by"
+    ],
+    "CONFIRMATION_RESOLVED": [
+      "resolved_at",
+      "resolved_by",
+      "resolution",
+      "new_level"
+    ],
+    "SCOPE_CHANGED": [
+      "new_scopes",
+      "changed_at",
+      "published_channels"
+    ],
     "CORRECTION_SENT": [
       "supersedes",
-      "recipient_scope"
+      "corrected_text",
+      "correction_kind",
+      "issued_by",
+      "recipient_scope",
+      "sent_at"
+    ],
+    "CORRECTION_DELIVERY_ACKED": [
+      "correction_id",
+      "channel",
+      "acked_at"
+    ]
+  },
+  "enums": {
+    "quote_level": [
+      "DIRECT",
+      "BACKGROUND",
+      "PENDING_CONFIRMATION"
+    ],
+    "source_kind": [
+      "realtime",
+      "batch_steno"
+    ],
+    "correction_kind": [
+      "factual",
+      "wording"
+    ],
+    "resolution": [
+      "confirmed",
+      "rejected"
     ]
   },
   "additionalProperties": false
